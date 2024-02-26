@@ -1,19 +1,23 @@
 require("@nomicfoundation/hardhat-toolbox");
-require('dotenv').config();
+require("dotenv").config({ path: ".env" });
 
-const { API_URL, PRIVATE_KEY } = process.env;
+const API_MAINNET_URL = process.env.API_MAINNET_URL;
 
-/** @type import('hardhat/config').HardhatUserConfig */
+const API_SEPOLIA_URL= process.env.API_SEPOLIA_URL;
+
+const ACCOUNT_PRIVATE_KEY = process.env.ACCOUNT_PRIVATE_KEY;
+
 module.exports = {
-  solidity: "0.8.20",
+  solidity: "0.8.24",
   networks: {
-    hardhat: {},
+    hardhat: {
+      forking: {
+        url: API_MAINNET_URL,
+      }
+    },
     sepolia: {
-       url: API_URL,
-       accounts: [`0x${PRIVATE_KEY}`],
+      url: API_SEPOLIA_URL,
+      accounts: [ACCOUNT_PRIVATE_KEY],
     }
- },
- mocha: {
-   timeout: 100000000,
- },
+  },
 };

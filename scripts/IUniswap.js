@@ -10,7 +10,7 @@ const main = async () => {
 
     const UNIRouter = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
 
-    const USDCHolder = "0x51eDF02152EBfb338e03E30d65C15fBf06cc9ECC";
+    const USDCHolder = "0xf584F8728B874a6a5c7A8d4d387C9aae9172D621";
 
     await helpers.impersonateAccount(USDCHolder);
     const impersonatedSigner = await ethers.getSigner(USDCHolder);
@@ -52,6 +52,7 @@ const main = async () => {
     const liquidityTokenBalanceBefore = await ROUTER.balanceOf(USDCHolder);
     console.log('Liquidity Token Balance Before:', liquidityTokenBalanceBefore.toString());
 
+    console.log("-------------------------------Removing liquidity----------------------------------")
     // Remove liquidity
     const amountLiquidityToRemove = ethers.utils.parseUnits("10", 18); // Example: remove 10 liquidity tokens
     const minAmountTokenA = ethers.utils.parseUnits("0", 18); // Minimum amount of token A to receive
